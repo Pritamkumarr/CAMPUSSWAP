@@ -81,7 +81,7 @@ html, body {
   display: flex;
   flex-direction: column; /* Stack vertically on small screens */
   align-items: center; /* Center nav items horizontally */
-  gap: 0.5rem; /* Space between nav items */
+  row-gap: 2rem; /* Space between nav items */
 }
 
 .nav-link {
