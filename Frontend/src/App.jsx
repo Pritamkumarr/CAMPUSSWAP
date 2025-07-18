@@ -4,6 +4,8 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './Components/Home.jsx';
 import About from './pages/About.jsx';
 import Login from './pages/Login.jsx'; // <-- Import the Login page
+import ContactUs from './pages/ContactUs.jsx';
+
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} /> {/* Add login route */}
+          <Route path="/contact" element={<ContactUs />} />
         </Routes>
       </main>
     </div>
