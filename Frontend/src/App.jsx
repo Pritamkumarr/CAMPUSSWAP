@@ -5,6 +5,7 @@ import Home from './Components/Home.jsx';
 import About from './pages/About.jsx';
 import Login from './pages/Login.jsx'; // <-- Import the Login page
 import ContactUs from './pages/ContactUs.jsx';
+import Signup from './pages/Signup.jsx';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} /> {/* Add login route */}
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </main>
     </div>
