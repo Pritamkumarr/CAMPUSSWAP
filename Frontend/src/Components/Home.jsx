@@ -30,14 +30,19 @@ const Home = () => {
           </nav>
 
           {/* Authentication Buttons */}
-          <div className="auth-buttons">
+          <div className="auth-buttons me-3">
+          <Link to="/login">
             <button className="button button-primary">
-              <LogIn size={18} /><span>Login</span>
+              <span>Login</span>
             </button>
-            <button className="button button-secondary">
-              <UserPlus size={18} /><span>SignUp</span>
+          </Link>
+          <Link to="/signup">
+            <button className="button button-secondary ms-2">
+              <span>Sign Up</span>
             </button>
-          </div>
+          </Link>
+        </div>
+          
 
           {/* Mobile Menu Toggle (hidden on desktop, visible on smaller screens) */}
           <button className="mobile-menu-toggle">
