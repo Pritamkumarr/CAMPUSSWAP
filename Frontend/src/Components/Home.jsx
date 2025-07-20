@@ -99,7 +99,7 @@ const Home = () => {
               <h4 className="product-title">Used Laptop</h4>
               <p className="product-description">Good condition, perfect for studies. Comes with charger.</p>
               <div className="product-footer">
-                <span className="product-price price-indigo">$450</span>
+                <span className="product-price price-indigo">Rs. 19500</span>
                 <button className="button button-product-details">
                   View Details
                 </button>
@@ -119,7 +119,7 @@ const Home = () => {
               <h4 className="product-title">Calculus Textbook</h4>
               <p className="product-description">Latest edition, minimal highlights. Great price!</p>
               <div className="product-footer">
-                <span className="product-price price-orange">$30</span>
+                <span className="product-price price-orange">Rs.120</span>
                 <button className="button button-product-details">
                   View Details
                 </button>
@@ -139,7 +139,7 @@ const Home = () => {
               <h4 className="product-title">Smartphone (Unlocked)</h4>
               <p className="product-description">Excellent condition, no scratches. Ready to use.</p>
               <div className="product-footer">
-                <span className="product-price price-purple">$200</span>
+                <span className="product-price price-purple">Rs.8500</span>
                 <button className="button button-product-details">
                   View Details
                 </button>
@@ -186,7 +186,10 @@ const Home = () => {
         <p className="cta-subtitle-bottom">
           Discover amazing deals or turn your unused items into cash.
         </p>
-        <button className="button button-cta-bottom">
+        <button
+          className="button button-cta-bottom"
+          onClick={() => navigate('/login')}
+        >
           Get Started Today!
         </button>
       </section>
@@ -194,9 +197,21 @@ const Home = () => {
       {/* Footer Section */}
       <footer className="footer">
         <div className="footer-links-container">
-          <a href="#" className="footer-link">Privacy Policy</a>
-          <a href="#" className="footer-link">Terms of Service</a>
-          <a href="#" className="footer-link">FAQ</a>
+         <Link to="/privacy">
+            <button className="button button-secondary ms-2">
+              <span>Privacy Policy</span>
+            </button>
+          </Link>
+           <Link to="/terms">
+            <button className="button button-secondary ms-2">
+              <span>Terms Of Service</span>
+            </button>
+          </Link>
+           <Link to="/faq">
+            <button className="button button-secondary ms-2">
+              <span>FAQ</span>
+            </button>
+          </Link>
         </div>
         <p className="copyright-text">&copy; {new Date().getFullYear()} CampusSwap. All rights reserved.</p>
       </footer>
