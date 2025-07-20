@@ -1,11 +1,13 @@
 import React from 'react';
 import './Home.css';
 // Import Link from react-router-dom
-import { Link } from 'react-router-dom'; // ADDED: Import Link
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Home as HomeIcon, ShoppingCart, Tag, Info, Mail, LogIn, UserPlus, Search } from 'lucide-react';
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     // The primary container for the entire application.
     // All styling is applied via CSS classes defined in Home.css.
@@ -15,7 +17,7 @@ const Home = () => {
       <header className="header">
         <div className="header-content-wrapper">
           {/* Site Logo */}
-          <h1 className="site-logo">CampusSwap</h1>
+           <h1 className="site-logo animated-logo">CampusSwap</h1>
 
           {/* Navigation Menu */}
           <nav className="main-nav">
