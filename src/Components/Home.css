@@ -57,6 +57,32 @@ html, body {
   max-width: 1200px; /* Max width for content on larger screens */
 }
 
+.animated-logo {
+  animation: slideDownFadeIn 1.2s ease-out forwards, pulseGlow 3s infinite ease-in-out;
+  opacity: 0;
+  transform: translateY(-30px);
+  color: #4f46e5; /* Indigo */
+  font-weight: 800;
+  text-shadow: 0 0 0 transparent;
+}
+
+@keyframes slideDownFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 4px 10px rgba(79, 70, 229, 0.4);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    text-shadow: 0 0 2px rgba(79, 70, 229, 0.6);
+  }
+  50% {
+    text-shadow: 0 0 1px rgba(79, 70, 229, 1);
+  }
+}
+
 /* Site Logo styling */
 .site-logo {
   margin-left: 0rem; /* Space from the left edge */
