@@ -74,10 +74,10 @@ const Home = () => {
           </div>
           {/* Call to Action buttons */}
           <div className="hero-buttons-container">
-            <button className="button button-hero-primary">
+            <button className="button button-hero-primary" onClick={() => navigate('/buy')}>
               Start Buying
             </button>
-            <button className="button button-hero-secondary">
+            <button className="button button-hero-secondary" onClick={() => navigate('/sell')}>
               Start Selling
             </button>
           </div>
@@ -94,7 +94,6 @@ const Home = () => {
               src="https://placehold.co/400x250/E0E7FF/4338CA?text=Laptop"
               alt="Laptop"
               className="product-image"
-              // Fallback image in case the primary image fails to load
               onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x250/E0E7FF/4338CA?text=Image+Error"; }}
             />
             <div className="product-info">
