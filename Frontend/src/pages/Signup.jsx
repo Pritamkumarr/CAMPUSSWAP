@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "../api/axios";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -8,21 +9,53 @@ const Signup = () => {
     confirmPassword: "",
   });
 
+  const [message, setMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
+
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
+    setMessage("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
+    setMessage("");
+    setIsSuccess(false);
+
+    const password = document.getElementById("password").value.trim();
+    const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+    console.log("Password:", JSON.stringify(password));
+    console.log("Confirm:", JSON.stringify(confirmPassword));
+
+    if (password !== confirmPassword) {
+      setMessage("❌ Passwords do not match!");
       return;
     }
-    alert("Signup successful!");
-    // Here you can add API call logic
+
+    try {
+      const res = await axios.post("/auth/signup", {
+        fullName: formData.name.trim(),
+        email: formData.email.trim(),
+        password,
+        confirmPassword,
+      });
+
+      setMessage("✅ Signup successful!");
+      setIsSuccess(true);
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+    } catch (error) {
+      setMessage(error.response?.data?.message || "❌ Signup failed");
+    }
   };
 
   return (
@@ -54,6 +87,17 @@ const Signup = () => {
         }
         .text-purple {
           color: #6f00ff;
+        }
+        .msg {
+          margin-top: 15px;
+          text-align: center;
+          font-weight: bold;
+        }
+        .msg.success {
+          color: green;
+        }
+        .msg.error {
+          color: crimson;
         }
       `}</style>
 
@@ -121,6 +165,10 @@ const Signup = () => {
               <button type="submit" className="btn btn-purple">Sign Up</button>
             </div>
           </form>
+
+          {message && (
+            <p className={`msg ${isSuccess ? "success" : "error"}`}>{message}</p>
+          )}
         </div>
       </div>
     </>

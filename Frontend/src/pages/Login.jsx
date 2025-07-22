@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    navigate("/dashboard");
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/login", formData);
+      alert("Login successful!");
+      // You can store token here if returned
+      navigate("/dashboard");
+    } catch (error) {
+      alert("Login failed. Please check your credentials.");
+      console.error(error);
+    }
   };
 
   return (
@@ -97,20 +118,19 @@ const Login = () => {
           width: 300px;
           opacity: 0.80;
           z-index: 1;
-          position: realtive;  
+          position: relative;
         }
       `}</style>
 
       <div className="login-bg">
-        {/* Blurred gradient blobs */}
         <div className="blob blob1"></div>
         <div className="blob blob2"></div>
 
-      <img
+        <img
           src="/campus-illustration.png"
           alt="Campus Illustration"
-         className="bg-illustration"
-        /> 
+          className="bg-illustration"
+        />
 
         <div className="login-card">
           <h2 className="text-center mb-4 text-purple fw-bold">CampusSwap Login</h2>
@@ -121,7 +141,10 @@ const Login = () => {
                 type="email"
                 className="form-control"
                 id="email"
+                name="email"
                 placeholder="you@campus.edu"
+                value={formData.email}
+                onChange={handleChange}
                 required
               />
             </div>
@@ -132,7 +155,10 @@ const Login = () => {
                 type="password"
                 className="form-control"
                 id="password"
+                name="password"
                 placeholder="Enter your password"
+                value={formData.password}
+                onChange={handleChange}
                 required
               />
             </div>
@@ -142,12 +168,18 @@ const Login = () => {
             </div>
 
             <p className="text-center">
-              Don't have an account? <a href="#" className="text-purple text-decoration-none">Sign Up</a>
+              Don't have an account?{" "}
+              <span
+                className="text-purple text-decoration-none"
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate("/signup")}
+              >
+                Sign Up
+              </span>
             </p>
           </form>
         </div>
 
-        {/* Decorative Wave at Bottom */}
         <svg className="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path fill="#ffffff22" fillOpacity="1" d="M0,192L48,170.7C96,149,192,107,288,122.7C384,139,480,213,576,224C672,235,768,181,864,165.3C960,149,1056,171,1152,165.3C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" />
         </svg>
