@@ -12,6 +12,8 @@ import Faq from './pages/faq.jsx';
 import BuyItems from './pages/BuyItems.jsx';
 import ItemDetails from './pages/ItemDetails.jsx';
 import SellItem from './pages/SellItem.jsx';
+import Cart from "./pages/Cart";
+
 
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
           <Route path="/buy" element={<BuyItems />} />
           <Route path="/sell" element={<SellItem />} />
           <Route path="/item/:id" element={<ItemDetails />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
     </div>

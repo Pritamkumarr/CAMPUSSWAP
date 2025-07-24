@@ -95,7 +95,7 @@ html, body {
 
 /* Main Navigation Menu */
 .main-nav {
-  padding-left: 220px ;
+  padding-left: 200px;
   display: none; /* Hidden by default on mobile, revealed by media query */
   width: 100%; /* Full width for navigation on small screens */
 }
@@ -103,8 +103,8 @@ html, body {
 .nav-list {
   list-style: none; /* Remove bullet points from list items */
   padding: 0; /* Remove default padding */
-  margin: 0 ; /* Remove default margin */
-  display: flex;
+  margin: 0; /* Remove default margin */
+  display: flex; /* Use flexbox for layout */
   flex-direction: column; /* Stack vertically on small screens */
   align-items: center; /* Center nav items horizontally */
   row-gap: 2rem; /* Space between nav items */
@@ -129,11 +129,22 @@ html, body {
 
 /* Authentication Buttons (Login/Sign Up) */
 .auth-buttons {
-  margin-right: -12rem;
-  display: flex;
+  align-items: end; /* Align buttons to the end */
+  display: flex; /* Use flexbox for layout */
   flex-direction: column; /* Stack vertically on small screens */
   gap: 0.8rem; /* Space between buttons */
   margin-top: 1rem; /* Space above buttons on small screens */
+}
+
+/* Remove underline and box-shadow from Login/Signup buttons and their parent Link */
+.auth-buttons a,
+.auth-buttons a:active,
+.auth-buttons a:focus,
+.auth-buttons .button,
+.auth-buttons .button-primary,
+.auth-buttons .button-secondary {
+  text-decoration: none !important;
+  box-shadow: none !important;
 }
 
 /* General button styles */
@@ -163,12 +174,12 @@ html, body {
 }
 
 .button-secondary {
-  background-color: #e9ecef; /* Light grey secondary button */
-  color: #343a40; /* Dark text */
+  background-color: #212529; /* Light grey secondary button */
+  color: #ffffff; /* Dark text */
 }
 
 .button-secondary:hover {
-  background-color: #dee2e6; /* Slightly darker grey on hover */
+  background-color: #212529; /* Darker shade on hover */
   transform: translateY(-2px); /* Slight lift effect */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
 }
@@ -182,7 +193,6 @@ html, body {
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.5rem;
-  margin-left: auto; /* Pushes toggle to the right on small screens */
 }
 
 /* --- Hero Section --- */
@@ -529,8 +539,9 @@ html, body {
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .header-content-wrapper {
-    flex-direction: row; /* Row direction on larger screens */
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Three columns: logo, nav, auth buttons */
+    align-items: center;
   }
 
   .site-logo {
@@ -538,9 +549,11 @@ html, body {
   }
 
   .main-nav {
+    width: 900px;
+    padding-right: 200px;
     display: block; /* Show navigation on larger screens */
     flex-grow: 1; /* Allows navigation to take available space */
-    margin: 0 2rem; /* Horizontal margin */
+    margin: 0 -2rem 0 2rem; /* Horizontal margin */
   }
 
   .nav-list {

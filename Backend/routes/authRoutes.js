@@ -1,10 +1,12 @@
+// routes/authRoutes.js
 const express = require("express");
 const router = express.Router();
+const authController = require("../controllers/authController"); // ✅ path to your controller
 
-router.post("/signup", async (req, res) => {
-  const { fullName, email, password } = req.body;
-  // Do validation + save user
-  return res.status(201).json({ message: "User created successfully" });
-});
+// Signup Route
+router.post("/signup", authController.signup);
+
+// Login Route
+router.post("/login", authController.login);
 
 module.exports = router;

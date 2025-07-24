@@ -39,8 +39,8 @@ const Home = () => {
             </button>
           </Link>
           <Link to="/signup">
-            <button className="button button-secondary ms-2">
-              <span>Sign Up</span>
+            <button className="button button-primary">
+              <span>SignUp</span>
             </button>
           </Link>
         </div>
