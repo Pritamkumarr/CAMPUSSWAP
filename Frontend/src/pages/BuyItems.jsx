@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../api/axios";
 
 const BuyItems = () => {
   const [products, setProducts] = useState([]);
@@ -24,8 +24,24 @@ const BuyItems = () => {
     navigate(`/item/${id}`);
   };
 
-  const handleAddToCart = (item) => {
-    navigate("/cart", { state: { cartItem: item } });
+  const handleAddToCart = async (item) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/signup");
+      return;
+    }
+    try {
+      await axios.post(
+        "/cart/add",
+        { productId: item._id, quantity: 1 },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      alert("Item added to cart!");
+    } catch (error) {
+      alert(
+        error.response?.data?.message || "Failed to add item to cart."
+      );
+    }
   };
 
   const handleGoToCart = () => {

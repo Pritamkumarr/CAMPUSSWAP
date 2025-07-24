@@ -1,6 +1,7 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../api/axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Login = () => {
@@ -21,12 +22,20 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", formData);
-      alert("Login successful!");
-      // You can store token here if returned
-      navigate("/dashboard");
+      const res = await axios.post("/auth/login", formData);
+      // Expecting res.data = { token, user: { fullName, email } }
+      if (res.data.token && res.data.user) {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        alert("Login successful!");
+        navigate("/");
+      } else {
+        alert("Login failed: Invalid response from server.");
+      }
     } catch (error) {
-      alert("Login failed. Please check your credentials.");
+      alert(
+        error.response?.data?.message || "Login failed. Please check your credentials."
+      );
       console.error(error);
     }
   };

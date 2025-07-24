@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css';
 // Import Link from react-router-dom
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,46 +7,61 @@ import { Home as HomeIcon, ShoppingCart, Tag, Info, Mail, LogIn, UserPlus, Searc
 
 const Home = () => {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      setUser(JSON.parse(userData));
+    } else {
+      setUser(null);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setUser(null);
+    navigate('/');
+  };
 
   return (
-    // The primary container for the entire application.
-    // All styling is applied via CSS classes defined in Home.css.
     <div className="app-container">
-
-      {/* Header Section: Contains logo, navigation, and authentication buttons */}
       <header className="header">
         <div className="header-content-wrapper">
-          {/* Site Logo */}
-           <h1 className="site-logo animated-logo">CampusSwap</h1>
-
-          {/* Navigation Menu */}
+          <h1 className="site-logo animated-logo">CampusSwap</h1>
           <nav className="main-nav">
             <ul className="nav-list">
-              {/* Change <a> to <Link> for navigation items that are internal routes */}
-              <li><Link to="/" className="nav-link"><HomeIcon size={18} /><span>Home</span></Link></li> {/* MODIFIED */}
-              <li><Link to="/buy" className="nav-link"><ShoppingCart size={18} /><span>Buy</span></Link></li> {/* Assuming /buy route exists or will exist */}
-              <li><Link to="/sell" className="nav-link"><Tag size={18} /><span>Sell</span></Link></li> {/* Assuming /sell route exists or will exist */}
-              <li><Link to="/about" className="nav-link"><Info size={18} /><span>About Us</span></Link></li> {/* MODIFIED: This is the primary change */}
-              <li><Link to="/contact" className="nav-link"><Mail size={18} /><span>Contact</span></Link></li> {/* Assuming /contact route exists or will exist */}
+              <li><Link to="/" className="nav-link"><HomeIcon size={18} /><span>Home</span></Link></li>
+              <li><Link to="/buy" className="nav-link"><ShoppingCart size={18} /><span>Buy</span></Link></li>
+              <li><Link to="/sell" className="nav-link"><Tag size={18} /><span>Sell</span></Link></li>
+              <li><Link to="/about" className="nav-link"><Info size={18} /><span>About Us</span></Link></li>
+              <li><Link to="/contact" className="nav-link"><Mail size={18} /><span>Contact</span></Link></li>
             </ul>
           </nav>
-
-          {/* Authentication Buttons */}
           <div className="auth-buttons me-3">
-          <Link to="/login">
-            <button className="button button-primary">
-              <span>Login</span>
-            </button>
-          </Link>
-          <Link to="/signup">
-            <button className="button button-primary">
-              <span>SignUp</span>
-            </button>
-          </Link>
-        </div>
-          
-
-          {/* Mobile Menu Toggle (hidden on desktop, visible on smaller screens) */}
+            {user ? (
+              <>
+                <span style={{ fontWeight: 600, marginRight: '1rem' }}>Hi, {user.fullName}</span>
+                <button className="button button-primary" onClick={handleLogout}>
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <button className="button button-primary">
+                    <span>Login</span>
+                  </button>
+                </Link>
+                <Link to="/signup">
+                  <button className="button button-primary">
+                    <span>SignUp</span>
+                  </button>
+                </Link>
+              </>
+            )}
+          </div>
           <button className="mobile-menu-toggle">
             <svg className="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>

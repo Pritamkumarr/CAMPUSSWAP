@@ -6,7 +6,9 @@ const multer = require('multer');
 const path = require('path');
 
 const authRoutes = require('./routes/authRoutes');
+
 const productRoutes = require('./routes/productRoutes');
+const cartRoutes = require('./routes/cartRoutes');
 
 dotenv.config();
 
@@ -35,8 +37,10 @@ const upload = multer({ storage: storage });
 app.locals.upload = upload;
 
 // Routes
+
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/cart', cartRoutes);
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
