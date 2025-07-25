@@ -13,7 +13,8 @@ import BuyItems from './pages/BuyItems.jsx';
 import ItemDetails from './pages/ItemDetails.jsx';
 import SellItem from './pages/SellItem.jsx';
 import Cart from "./pages/Cart";
-
+import PaymentGateway from "./pages/PaymentGateway.jsx";
+import SafetyTips from './pages/SafetyTips.jsx';
 
 
 function App() {
@@ -26,13 +27,15 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<TermsOfService />} />
-          <Route path="/faq" element={<Faq />} />
           <Route path="/buy" element={<BuyItems />} />
           <Route path="/sell" element={<SellItem />} />
           <Route path="/item/:id" element={<ItemDetails />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/safety" element={<SafetyTips />} />          
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/payment-gateway" element={<PaymentGateway />} />
         </Routes>
       </main>
     </div>

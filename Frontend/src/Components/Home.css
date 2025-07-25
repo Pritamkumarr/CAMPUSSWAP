@@ -496,44 +496,6 @@ html, body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* --- Footer --- */
-/* The website footer with links and copyright information. */
-.footer {
-  background-color: #212529; /* Dark grey footer */
-  color: #ced4da; /* Light grey text */
-  padding: 2.5rem 1.5rem;
-  text-align: center;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* Inner shadow */
-  margin-top: auto; /* Pushes footer to the bottom of the page */
-}
-
-.footer-links-container {
-  justify-content: center;
-  display: flex;
-  flex-direction: column; /* Stack vertically on small screens */
-  gap: 0.8rem;
-  margin-bottom: 1.5rem;
-  padding-top: 20px;
-}
-
-.footer-link {
-  color: #ced4da;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-link:hover {
-  color: #ffffff;
-}
-
-.copyright-text {
-  padding-top: 5px;
-  font-size: 0.85rem;
-  color: #adb5bd;
-}
-
 /* --- Responsive Adjustments (Media Queries) --- */
 
 /* Medium devices (tablets, 768px and up) */
@@ -563,6 +525,7 @@ html, body {
   }
 
   .auth-buttons {
+    padding-left: -45px;
     flex-direction: row; /* Row direction for auth buttons */
     margin-top: 0;
   }
@@ -596,10 +559,6 @@ html, body {
     font-size: 3rem;
   }
 
-  .footer-links-container {
-    flex-direction: row; /* Row direction for footer links */
-    gap: 2rem;
-  }
 }
 
 /* Large devices (desktops, 1024px and up) */

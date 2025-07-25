@@ -74,7 +74,12 @@ const Cart = () => {
                 <button className="btn btn-danger me-2" onClick={() => handleRemove(item.product._id)}>
                   Remove
                 </button>
-                <button className="btn btn-success" onClick={() => alert("Proceeding to buy item: " + item.product.title)}>
+                <button
+                  className="btn btn-success"
+                  onClick={() =>
+                    navigate("/payment-gateway", { state: { product: item.product } })
+                  }
+                >
                   Buy Now
                 </button>
               </div>
