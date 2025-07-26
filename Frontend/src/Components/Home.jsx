@@ -203,7 +203,9 @@ const Home = () => {
             <div className="step-icon-container">
               <UserPlus size={32} className="step-icon" />
             </div>
-            <h4 className="step-title">1. Sign Up</h4>
+            <Link to="/signup" className="step-title-link">
+              <h4 className="step-title">1. Sign Up</h4>
+            </Link>
             <p className="step-description">Create your free student account in minutes.</p>
           </div>
 
@@ -211,7 +213,9 @@ const Home = () => {
             <div className="step-icon-container">
               <Tag size={32} className="step-icon" />
             </div>
-            <h4 className="step-title">2. List or Browse</h4>
+            <Link to="/sell" className="step-title-link">
+              <h4 className="step-title">2. List or Browse</h4>
+            </Link>
             <p className="step-description">Easily list your items or browse thousands of products.</p>
           </div>
 
@@ -219,7 +223,9 @@ const Home = () => {
             <div className="step-icon-container">
               <ShoppingCart size={32} className="step-icon" />
             </div>
-            <h4 className="step-title">3. Swap & Save</h4>
+            <Link to="/buy" className="step-title-link">
+              <h4 className="step-title">3. Swap & Save</h4>
+            </Link>
             <p className="step-description">Connect with fellow students and make great deals!</p>
           </div>
         </div>

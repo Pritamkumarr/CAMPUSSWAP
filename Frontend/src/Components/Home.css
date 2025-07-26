@@ -452,7 +452,15 @@ html, body {
   color: #343a40;
   margin-bottom: 0.75rem;
 }
+/* Remove underline from How It Works step links */
+.step-title-link {
+  text-decoration: none;
+}
 
+.step-title-link:hover,
+.step-title-link:focus {
+  text-decoration: none;
+}
 .step-description {
   font-size: 0.95rem;
   color: #6c757d;
